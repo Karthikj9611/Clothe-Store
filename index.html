@@ -896,70 +896,67 @@ button {
     clearFiltersBtn.addEventListener("click", clearAllFilters);
   }
 
-  // WhatsApp order logic
-function generateWhatsAppMessage(name, phone, address) {
+  function generateWhatsAppMessage(name, phone, address) {
 
-  const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+  // calculate total
+  const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-  const TABLE_WIDTH = 57;
-  const ITEM_WIDTH = 24;
-
-  function wrapText(text, width) {
-    const lines = [];
-    text = String(text);
-    while (text.length > width) {
-      lines.push(text.substring(0, width));
-      text = text.substring(width);
-    }
-    lines.push(text);
-    return lines;
+  // if cart empty
+  if (!cart || cart.length === 0) {
+    return encodeURIComponent("Cart is empty.");
   }
 
-  function padLine(content) {
-    return content.padEnd(TABLE_WIDTH - 2) + "|";
-  }
+  // --------- Dynamic column width calculation ----------
+  const itemWidth = Math.max(
+    "Item".length,
+    ...cart.map(i => i.name.length)
+  );
 
+  const qtyWidth = Math.max(
+    "Qty".length,
+    ...cart.map(i => String(i.quantity).length)
+  );
+
+  const amtWidth = Math.max(
+    "Amount".length,
+    ...cart.map(i => (`₹${(i.price * i.quantity).toFixed(2)}`).length)
+  );
+
+  // --------- Build table ----------
   let table = "";
-  table += "---------------------------------------------------------\n";
-  table += "|                   PLACE ORDER                         |\n";
-  table += "---------------------------------------------------------\n";
 
-  wrapText(`Customer Name : ${name}`, 55).forEach(l => {
-    table += `| ${l.padEnd(55)}|\n`;
+  // header
+  table += `${"Item".padEnd(itemWidth)}  ${"Qty".padStart(qtyWidth)}  ${"Amount".padStart(amtWidth)}\n`;
+  table += `${"-".repeat(itemWidth + qtyWidth + amtWidth + 4)}\n`;
+
+  // rows
+  cart.forEach(item => {
+    const itemName = item.name.padEnd(itemWidth);
+    const qty = String(item.quantity).padStart(qtyWidth);
+    const amount = `₹${(item.price * item.quantity).toFixed(2)}`.padStart(amtWidth);
+
+    table += `${itemName}  ${qty}  ${amount}\n`;
   });
 
-  wrapText(`Phone         : ${phone}`, 55).forEach(l => {
-    table += `| ${l.padEnd(55)}|\n`;
-  });
+  // footer
+  table += `${"-".repeat(itemWidth + qtyWidth + amtWidth + 4)}\n`;
+  table += `Grand Total: ₹${total.toFixed(2)}`;
 
-  wrapText(`Address       : ${address}`, 55).forEach(l => {
-    table += `| ${l.padEnd(55)}|\n`;
-  });
-
-  table += "---------------------------------------------------------\n";
-  table += "| Item                     | Qty |       Amount         |\n";
-  table += "---------------------------------------------------------\n";
-
-  cart.forEach(i => {
-    const itemLines = wrapText(i.name, ITEM_WIDTH);
-
-    itemLines.forEach((line, index) => {
-      const qty = index === 0 ? String(i.quantity).padStart(3) : "   ";
-      const amount = index === 0
-        ? `₹${(i.price * i.quantity).toFixed(2)}`.padStart(12)
-        : " ".repeat(12);
-
-      table += `| ${line.padEnd(ITEM_WIDTH)} | ${qty} | ${amount} |\n`;
-    });
-  });
-
-  table += "---------------------------------------------------------\n";
-  table += `| Grand Total              |      ₹${total.toFixed(2).padStart(10)} |\n`;
-  table += "---------------------------------------------------------";
-
+  // wrap in monospace block for WhatsApp alignment
   table = "```" + table + "```";
 
-  const message = `${table}\n\n📍 KR Men's Wear, Bengaluru`;
+  // --------- Full message ----------
+  const message =
+`🛍️ *NEW ORDER* 🛍️
+
+👤 *Customer:* ${name}
+📞 *Phone:* ${phone}
+🏠 *Address:* ${address}
+
+📦 *Order Details:*
+${table}
+
+📍 KR Men's Wear, Bengaluru`;
 
   return encodeURIComponent(message);
 }
