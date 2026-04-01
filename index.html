@@ -985,38 +985,37 @@ function generateWhatsAppMessageForOwner(name, phone, address) {
 
   const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-  let table =
-`---------------------------------------------------------
-|                   PLACE ORDER                         |
----------------------------------------------------------
-| Customer Name : ${name.padEnd(33)}|
-| Phone         : ${phone.padEnd(33)}|
-| Address       : ${address.padEnd(33)}|
----------------------------------------------------------
-| Item                     | Qty |       Amount         |
----------------------------------------------------------\n`;
+  // Header row
+  let orderItems = 
+`Item               Qty    Amount
+------------------------------------\n`;
 
+  // Table rows
   cart.forEach(item => {
-    const itemName = item.name.padEnd(24);
-    const qty = String(item.quantity).padStart(3);
-    const amount = `₹${(item.price * item.quantity).toFixed(2)}`.padStart(12);
-
-    table += `| ${itemName} | ${qty} | ${amount} |\n`;
+    const itemName = item.name.padEnd(18);
+    const qty = String(item.quantity).padEnd(6);
+    const amount = `₹${(item.price * item.quantity).toFixed(2)}`;
+    
+    orderItems += `${itemName}${qty}${amount}\n`;
   });
 
-  table +=
-`---------------------------------------------------------
-| Grand Total               |     ₹${totalAmount.toFixed(2).padStart(10)} |
----------------------------------------------------------`;
-
-  // Wrap in monospace block so WhatsApp keeps alignment
-  table = "```" + table + "```";
+  orderItems += "------------------------------------";
 
   const storeLocation = "📍 KR Men's Wear, AECS Layout, Singasandra, Bengaluru - 560038";
 
   const message =
-`${table}
+`🛍️ *PLACE ORDER* 🛍️
 
+👤 *Customer Name:* ${name}
+📞 *Phone:* ${phone}
+🏠 *Delivery Address:* ${address}
+
+📦 *Order Details:*
+${orderItems}
+
+💰 *Grand Total:* ₹${totalAmount.toFixed(2)}
+
+✨ *Please review and confirm delivery.*
 ${storeLocation}
 
 🕐 Order placed via KR Men's Wear Website`;
