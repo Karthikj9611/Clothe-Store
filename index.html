@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Namma Men's Wear | Bengaluru's Premium Menswear Store</title>
+  <title>KR Men's Wear | Premium Menswear Store</title>
   <!-- Google Fonts & Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -613,6 +613,23 @@
       color: #9b8a72;
     }
 
+    @media (max-width: 800px) {
+      .app-container {
+        padding: 1rem;
+      }
+      .filter-sidebar {
+        flex: 0 0 100%;
+        position: static;
+        margin-bottom: 1.5rem;
+      }
+      .main-shop {
+        flex-direction: column;
+      }
+      .owner-settings {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
     button {
       cursor: pointer;
     }
@@ -623,8 +640,8 @@
   <!-- Header -->
   <div class="top-bar">
     <div class="logo-area">
-      <h1><i class="fas fa-tshirt"></i>Namma Men's Wear</h1>
-      <p>Bengaluru's Premium Menswear | Shirts & Pants</p>
+      <h1><i class="fas fa-tshirt"></i>KR Men's Wear</h1>
+      <p>Premium Menswear | Shirts & Pants</p>
     </div>
     <div class="header-actions">
       <div class="search-wrapper">
@@ -632,28 +649,28 @@
         <input type="text" id="searchInput" placeholder="Search shirts, pants...">
       </div>
       <div class="icon-group">
-        <i class="far fa-heart"></i>
+<!--        <i class="far fa-heart"></i> -->
         <div class="badge-cart" id="cartIconBtn">
           <i class="fas fa-shopping-bag"></i>
           <span class="cart-count" id="cartCountBadge">0</span>
         </div>
-        <i class="far fa-user"></i>
+<!--        <i class="far fa-user"></i> -->
       </div>
     </div>
   </div>
 
   <!-- Bangalore vibe location -->
   <div class="location-strip">
-    <i class="fas fa-map-marker-alt"></i> <span>📍 Indiranagar, Bengaluru</span>
+    <i class="fas fa-map-marker-alt"></i> <span>📍 AECS Layout,Singasandra , Bengaluru</span>
     <i class="fas fa-mug-hot" style="margin-left: 10px;"></i>
-    <span style="margin-left: 8px;">☕ Namma Bengaluru</span>
+    <span style="margin-left: 8px;">☕ Bengaluru</span>
   </div>
 
   <!-- Owner WhatsApp Number Setting (Orders will be sent to this number) -->
   <div class="owner-settings">
     <label><i class="fab fa-whatsapp"></i> Store Owner WhatsApp (Receive Orders)</label>
-    <input type="tel" id="ownerWhatsApp" placeholder="91XXXXXXXXXX" value="919611459960">
-    <small>Orders will be sent to this number for review</small>
+    <input type="tel" id="ownerWhatsApp" style="text-align:center;" placeholder="91XXXXXXXXXX" value="919611459960">
+    <small>Ordered details will be sent to this number for review</small>
   </div>
 
   <!-- Categories: Shirts & Pants -->
@@ -902,7 +919,6 @@
             <div class="product-price">₹${prod.price.toLocaleString('en-IN')}</div>
             <button class="add-to-cart-btn" data-id="${prod.id}"><i class="fas fa-shopping-cart"></i> ${btnText}</button>
           </div>
-          <span class="badge">${prod.badge}</span>
         </div>
       `;
     });
@@ -956,7 +972,7 @@
     cart.forEach(item => {
       itemsHtml += `• ${escapeHtml(item.name)} x ${item.quantity} = ₹${(item.price * item.quantity).toFixed(2)}<br>`;
     });
-    itemsHtml += `<strong style="color:#2c553c;">Total: ₹${total.toFixed(2)}</strong><br><small>📍 Namma Men's Wear, Bengaluru</small>`;
+    itemsHtml += `<strong style="color:#2c553c;">Total: ₹${total.toFixed(2)}</strong><br><small>📍 KR Men's Wear, Bengaluru</small>`;
     orderSummaryPreview.innerHTML = itemsHtml;
     checkoutModal.classList.add("open");
   }
@@ -965,16 +981,47 @@
     checkoutModal.classList.remove("open");
   }
 
-  function generateWhatsAppMessageForOwner(name, phone, address) {
-    const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    let orderItems = "";
-    cart.forEach(item => {
-      orderItems += `▪️ ${item.name} (Qty: ${item.quantity}) - ₹${(item.price * item.quantity).toFixed(2)}\n`;
-    });
-    const storeLocation = "📍 Namma Men's Wear, Indiranagar, Bengaluru - 560038";
-    const message = `🛍️ *NEW ORDER RECEIVED* 🛍️\n\n👤 *Customer Name:* ${name}\n📞 *Phone:* ${phone}\n🏠 *Delivery Address:* ${address}\n\n📦 *Order Details:*\n${orderItems}\n💰 *Grand Total:* ₹${totalAmount.toFixed(2)}\n\n✨ *Please review and confirm delivery.*\n${storeLocation}\n\n🕐 Order placed via Namma Men's Wear Website`;
-    return encodeURIComponent(message);
-  }
+function generateWhatsAppMessageForOwner(name, phone, address) {
+
+  const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+  // Header row
+  let orderItems = 
+`Item               Qty    Amount
+------------------------------------\n`;
+
+  // Table rows
+  cart.forEach(item => {
+    const itemName = item.name.padEnd(18);
+    const qty = String(item.quantity).padEnd(6);
+    const amount = `₹${(item.price * item.quantity).toFixed(2)}`;
+    
+    orderItems += `${itemName}${qty}${amount}\n`;
+  });
+
+  orderItems += "------------------------------------";
+
+  const storeLocation = "📍 KR Men's Wear, AECS Layout, Singasandra, Bengaluru - 560038";
+
+  const message =
+`🛍️ *PLACE ORDER* 🛍️
+
+👤 *Customer Name:* ${name}
+📞 *Phone:* ${phone}
+🏠 *Delivery Address:* ${address}
+
+📦 *Order Details:*
+${orderItems}
+
+💰 *Grand Total:* ₹${totalAmount.toFixed(2)}
+
+✨ *Please review and confirm delivery.*
+${storeLocation}
+
+🕐 Order placed via KR Men's Wear Website`;
+
+  return encodeURIComponent(message);
+}
 
   function handlePlaceOrder(e) {
     e.preventDefault();
