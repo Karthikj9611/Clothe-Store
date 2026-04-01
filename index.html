@@ -898,13 +898,72 @@ button {
   }
 
   // WhatsApp order logic
-  function generateWhatsAppMessage(name, phone, address) {
-    const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
-    let items = `Item               Qty    Amount\n------------------------------------\n`;
-    cart.forEach(i => { const namePad = i.name.substring(0,18).padEnd(18); const qtyPad = String(i.quantity).padEnd(6); items += `${namePad}${qtyPad}₹${(i.price * i.quantity).toFixed(2)}\n`; });
-    items += `------------------------------------\n💰 Grand Total: ₹${total.toFixed(2)}`;
-    return encodeURIComponent(`🛍️ NEW ORDER 🛍️\n\n👤 Customer: ${name}\n📞 Phone: ${phone}\n🏠 Address: ${address}\n\n📦 Order Details:\n${items}\n📍 KR Men's Wear, Bengaluru`);
+function generateWhatsAppMessage(name, phone, address) {
+
+  const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+
+  const TABLE_WIDTH = 57;
+  const ITEM_WIDTH = 24;
+
+  function wrapText(text, width) {
+    const lines = [];
+    text = String(text);
+    while (text.length > width) {
+      lines.push(text.substring(0, width));
+      text = text.substring(width);
+    }
+    lines.push(text);
+    return lines;
   }
+
+  function padLine(content) {
+    return content.padEnd(TABLE_WIDTH - 2) + "|";
+  }
+
+  let table = "";
+  table += "---------------------------------------------------------\n";
+  table += "|                   PLACE ORDER                         |\n";
+  table += "---------------------------------------------------------\n";
+
+  wrapText(`Customer Name : ${name}`, 55).forEach(l => {
+    table += `| ${l.padEnd(55)}|\n`;
+  });
+
+  wrapText(`Phone         : ${phone}`, 55).forEach(l => {
+    table += `| ${l.padEnd(55)}|\n`;
+  });
+
+  wrapText(`Address       : ${address}`, 55).forEach(l => {
+    table += `| ${l.padEnd(55)}|\n`;
+  });
+
+  table += "---------------------------------------------------------\n";
+  table += "| Item                     | Qty |       Amount         |\n";
+  table += "---------------------------------------------------------\n";
+
+  cart.forEach(i => {
+    const itemLines = wrapText(i.name, ITEM_WIDTH);
+
+    itemLines.forEach((line, index) => {
+      const qty = index === 0 ? String(i.quantity).padStart(3) : "   ";
+      const amount = index === 0
+        ? `₹${(i.price * i.quantity).toFixed(2)}`.padStart(12)
+        : " ".repeat(12);
+
+      table += `| ${line.padEnd(ITEM_WIDTH)} | ${qty} | ${amount} |\n`;
+    });
+  });
+
+  table += "---------------------------------------------------------\n";
+  table += `| Grand Total              |      ₹${total.toFixed(2).padStart(10)} |\n`;
+  table += "---------------------------------------------------------";
+
+  table = "```" + table + "```";
+
+  const message = `${table}\n\n📍 KR Men's Wear, Bengaluru`;
+
+  return encodeURIComponent(message);
+}
   
   function openCheckoutModal() { if (cart.length === 0) { showToast("Add items to cart first"); return; } const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0); let sumHtml = `<strong>Your order summary</strong><br>`; cart.forEach(i => { sumHtml += `• ${i.name} x${i.quantity} = ₹${(i.price * i.quantity).toFixed(2)}<br>`; }); sumHtml += `<strong>Total: ₹${total.toFixed(2)}</strong>`; document.getElementById("orderSummaryPreview").innerHTML = sumHtml; document.getElementById("checkoutModal").classList.add("open"); }
   function closeModal() { document.getElementById("checkoutModal").classList.remove("open"); }
