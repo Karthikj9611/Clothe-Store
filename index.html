@@ -334,6 +334,36 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.8rem;
 }
+
+/* Mobile: 2 cards per row */
+@media (max-width: 640px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .product-img {
+    height: 200px;
+  }
+  
+  .product-info {
+    padding: 0.75rem;
+  }
+  
+  .product-title {
+    font-size: 0.85rem;
+  }
+  
+  .product-price {
+    font-size: 1rem;
+    margin: 0.4rem 0;
+  }
+  
+  .add-to-cart-btn {
+    padding: 0.5rem;
+    font-size: 0.7rem;
+  }
+}
 .product-card {
   background: white;
   border-radius: 28px;
@@ -656,6 +686,32 @@ body {
 button {
   cursor: pointer;
 }
+
+/* Footer responsive */
+@media (max-width: 480px) {
+  .footer > div:first-child {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Footer responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 1.2rem !important;
+    flex-wrap: wrap;
+  }
+  
+  .social-icons {
+    order: 1;
+  }
+  
+  .contact-buttons {
+    order: 2;
+  }
+}
   </style>
 </head>
 <body>
@@ -770,10 +826,40 @@ button {
     <i class="fas fa-map-marker-alt"></i> AECS Layout, Singasandra, Bengaluru
     <i class="fas fa-mug-hot" style="margin-left: 8px;"></i>
 </div>
-<div class="owner-settings">
+<!--<div class="owner-settings">
     <label><i class="fab fa-whatsapp"></i> Store Owner WhatsApp (Receive Orders)</label>
     <input type="tel" id="ownerWhatsApp" style="text-align:center;" placeholder="919611459960" value="919611459960">
     <small>Order details go here for confirmation</small>
+</div>
+-->
+<!-- Footer Section -->
+<div class="footer" style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #fed7aa;">
+  <div class="footer-content" style="display: flex; justify-content: center; align-items: center; gap: 2.5rem; flex-wrap: wrap;">
+    
+    
+    <!-- Call & WhatsApp Buttons -->
+    <div class="contact-buttons" style="display: flex; gap: 1rem;">
+      <a href="tel:919611459960" style="text-decoration: none;">
+        <button style="background: #fff7ed; border: 1px solid #fed7aa; padding: 0.6rem 1.2rem; border-radius: 60px; font-weight: 600; color: #c2410c; cursor: pointer; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px;">
+          <i class="fas fa-phone-alt"></i>
+        </button>
+      </a>
+      <a href="https://wa.me/919611459960" target="_blank" style="text-decoration: none;">
+        <button style="background: #25D366; border: none; padding: 0.6rem 1.2rem; border-radius: 60px; font-weight: 600; color: white; cursor: pointer; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px;">
+          <i class="fab fa-whatsapp"></i>
+        </button>
+      </a>
+    </div>
+	
+	<!-- Instagram Icon -->
+    <div class="social-icons" style="display: flex; gap: 1.5rem;">
+      <i class="fab fa-instagram" style="color: #f97316; font-size: 1.5rem; cursor: pointer;"></i>
+    </div>
+  </div>
+  
+  <div style="text-align: center; margin-top: 1rem; font-size: 0.7rem; color: #c2410c;">
+    © 2026 KR Webcrafts
+  </div>
 </div>
 
 <script>
