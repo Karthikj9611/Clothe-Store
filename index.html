@@ -364,6 +364,41 @@ body {
     font-size: 0.7rem;
   }
 }
+
+@media (max-width: 640px) {
+  .top-bar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo-area {
+    flex: 1;
+  }
+  
+  .logo-area h1 {
+    font-size: 1.3rem;
+  }
+  
+  .header-actions {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: flex-end;
+  }
+  
+  .search-wrapper {
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .search-wrapper input {
+    width: 120px;
+  }
+  
+  .badge-cart i {
+    font-size: 1.2rem;
+  }
+}
 .product-card {
   background: white;
   border-radius: 28px;
