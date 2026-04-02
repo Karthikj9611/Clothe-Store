@@ -827,12 +827,13 @@ button {
     <i class="fas fa-map-marker-alt"></i> AECS Layout, Singasandra, Bengaluru
     <i class="fas fa-mug-hot" style="margin-left: 8px;"></i>
 </div>
+-->
 <div class="owner-settings">
     <label><i class="fab fa-whatsapp"></i> Store Owner WhatsApp (Receive Orders)</label>
-    <input type="tel" id="ownerWhatsApp" style="text-align:center;" placeholder="919611459960" value="919611459960">
+    <a href="https://wa.me/919611459960" target="_blank" style="display:block; text-align:center;">9611459960</a>
     <small>Order details go here for confirmation</small>
 </div>
--->
+
 <!-- Footer Section -->
 <div class="footer" style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #fed7aa;">
   <div class="footer-content" style="display: flex; justify-content: center; align-items: center; gap: 2.5rem; flex-wrap: wrap;">
@@ -1050,7 +1051,7 @@ ${table}
   
   function openCheckoutModal() { if (cart.length === 0) { showToast("Add items to cart first"); return; } const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0); let sumHtml = `<strong>Your order summary</strong><br>`; cart.forEach(i => { sumHtml += `• ${i.name} x${i.quantity} = ₹${(i.price * i.quantity).toFixed(2)}<br>`; }); sumHtml += `<strong>Total: ₹${total.toFixed(2)}</strong>`; document.getElementById("orderSummaryPreview").innerHTML = sumHtml; document.getElementById("checkoutModal").classList.add("open"); }
   function closeModal() { document.getElementById("checkoutModal").classList.remove("open"); }
-  function handlePlaceOrder(e) { e.preventDefault(); const name = document.getElementById("custName").value.trim(), phone = document.getElementById("custPhone").value.trim(), address = document.getElementById("custAddress").value.trim(); if (!name || !phone || !address) { showToast("Fill all fields"); return; } if (!/^\d{10}$/.test(phone)) { showToast("Enter valid 10-digit mobile"); return; } let owner = document.getElementById("ownerWhatsApp").value.trim().replace(/\D/g, ''); if (!owner || owner.length < 10) { showToast("Valid owner WhatsApp required"); return; } const url = `https://wa.me/${owner}?text=${generateWhatsAppMessage(name, phone, address)}`; window.open(url, '_blank'); showToast("Order sent to store!"); cart = []; updateCartUI(); renderProducts(); closeModal(); document.getElementById("cartOverlay").classList.remove("open"); document.getElementById("cartDrawer").classList.remove("open"); document.getElementById("checkoutForm").reset(); }
+  function handlePlaceOrder(e) { e.preventDefault(); const name = document.getElementById("custName").value.trim(), phone = document.getElementById("custPhone").value.trim(), address = document.getElementById("custAddress").value.trim(); if (!name || !phone || !address) { showToast("Fill all fields"); return; } if (!/^\d{10}$/.test(phone)) { showToast("Enter valid 10-digit mobile"); return; } let owner = "919611459960"; ; if (!owner || owner.length < 10) { showToast("Valid owner WhatsApp required"); return; } const url = `https://wa.me/${owner}?text=${generateWhatsAppMessage(name, phone, address)}`; window.open(url, '_blank'); showToast("Order sent to store!"); cart = []; updateCartUI(); renderProducts(); closeModal(); document.getElementById("cartOverlay").classList.remove("open"); document.getElementById("cartDrawer").classList.remove("open"); document.getElementById("checkoutForm").reset(); }
 
   function initEvents() {
     initInstantFilters();
