@@ -1192,6 +1192,84 @@ button {
   }
 }
 
+/* Owner Settings - Grid layout for perfect equal division */
+.owner-settings {
+  background: #fffaf5;
+  border-radius: 20px;
+  padding: 0.7rem 1.2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border: 1px solid #fed7aa;
+}
+
+/* Mobile view - grid for equal division */
+@media (max-width: 640px) {
+  .owner-settings {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;  /* 3 equal columns */
+    gap: 0.5rem;
+    padding: 0.6rem 0.8rem;
+    align-items: center;
+  }
+  
+  .owner-settings label {
+    font-size: 0.6rem;
+    white-space: nowrap;
+    text-align: center;
+    gap: 4px;
+    margin: 0;
+  }
+  
+  .owner-settings label i {
+    font-size: 0.7rem;
+  }
+  
+  .owner-settings input {
+    width: 100%;
+    padding: 0.35rem 0.4rem;
+    font-size: 0.6rem;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  .owner-settings small {
+    font-size: 0.55rem;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.2;
+    word-break: keep-all;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+  .owner-settings {
+    gap: 0.3rem;
+    padding: 0.4rem 0.5rem;
+  }
+  
+  .owner-settings label {
+    font-size: 0.5rem;
+  }
+  
+  .owner-settings label i {
+    font-size: 0.6rem;
+  }
+  
+  .owner-settings input {
+    font-size: 0.5rem;
+    padding: 0.25rem 0.3rem;
+  }
+  
+  .owner-settings small {
+    font-size: 0.45rem;
+  }
+}
+
   </style>
 </head>
 <body>
