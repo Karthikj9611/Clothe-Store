@@ -546,6 +546,12 @@ body {
   font-weight: 600;
   color: #2c1810;
 }
+.cart-item-size {
+  font-size: 0.7rem;
+  color: #f97316;
+  font-weight: 500;
+  margin-top: 2px;
+}
 .cart-item-price {
   font-size: 0.75rem;
   color: #f97316;
@@ -748,255 +754,59 @@ button {
   }
 }
 
-
-/* Add this to your existing CSS - Replace the existing .product-card styles */
-
-.product-card {
-  background: white;
-  border-radius: 24px;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-  border: none;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-  position: relative;
-}
-
-.product-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #f97316, #fdba74, #f97316);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-}
-
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 40px -12px rgba(249, 115, 22, 0.25);
-}
-
-.product-card:hover::before {
-  opacity: 1;
-}
-
-.product-img {
-  height: 280px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #faf6f0;
-  position: relative;
-  transition: transform 0.5s ease;
-}
-
-.product-card:hover .product-img {
-  transform: scale(1.02);
-}
-
-.badge-tag {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  background: linear-gradient(135deg, #f97316, #ea580c);
-  color: white;
-  padding: 0.25rem 1rem;
-  border-radius: 30px;
-  font-size: 0.65rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  backdrop-filter: blur(4px);
-  background-blend-mode: overlay;
-  z-index: 2;
-}
-
-/* Quick view overlay effect */
-.product-img::after {
-  content: '\f06e';
-  font-family: 'Font Awesome 6 Free';
-  font-weight: 400;
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  background: rgba(255, 255, 255, 0.9);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+/* Size selector styles */
+.size-selector {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  color: #f97316;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.product-card:hover .product-img::after {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.product-info {
-  padding: 1.2rem 1.2rem 1.5rem;
-  background: white;
-}
-
-.product-title {
-  font-weight: 700;
-  font-size: 1.05rem;
-  margin-bottom: 0.3rem;
-  color: #2c1810;
-  letter-spacing: -0.2px;
-  transition: color 0.2s;
-}
-
-.product-card:hover .product-title {
-  color: #f97316;
-}
-
-.product-category {
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: #a85d2c;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  display: inline-block;
-  background: #fff7ed;
-  padding: 0.2rem 0.7rem;
-  border-radius: 20px;
-  margin-bottom: 0.6rem;
-}
-
-.product-price {
-  font-weight: 800;
-  color: #f97316;
-  font-size: 1.3rem;
-  margin: 0.6rem 0 0.8rem;
-  display: flex;
-  align-items: center;
   gap: 8px;
+  margin: 10px 0;
+  flex-wrap: wrap;
 }
-
-.product-price::before {
-  content: '₹';
-  font-size: 1rem;
-  font-weight: 600;
-  color: #c2410c;
-}
-
-/* Original price strike-through (optional - add data attribute for discounts) */
-.product-price small {
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: #b7a48e;
-  text-decoration: line-through;
-  margin-left: 5px;
-}
-
-.add-to-cart-btn {
-  background: transparent;
-  border: 1.5px solid #fed7aa;
-  width: 100%;
-  padding: 0.7rem;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: #c2410c;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.add-to-cart-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, #f97316, #ea580c);
-  transition: left 0.3s ease;
-  z-index: -1;
-}
-
-.add-to-cart-btn:hover::before {
-  left: 0;
-}
-
-.add-to-cart-btn:hover {
-  border-color: #f97316;
-  color: white;
-}
-
-/* Rating stars row (optional) */
-.product-rating {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin: 0.4rem 0 0.2rem;
-}
-
-.product-rating i {
+.size-option {
+  padding: 4px 10px;
+  border: 1px solid #fed7aa;
+  border-radius: 30px;
   font-size: 0.7rem;
-  color: #fbbf24;
+  font-weight: 600;
+  background: white;
+  color: #c2410c;
+  cursor: pointer;
+  transition: all 0.2s;
 }
-
-.product-rating span {
+.size-option:hover {
+  background: #fff7ed;
+  border-color: #f97316;
+}
+.size-option.selected {
+  background: #f97316;
+  color: white;
+  border-color: #f97316;
+}
+.size-label {
   font-size: 0.65rem;
-  color: #b7a48e;
-  margin-left: 4px;
+  color: #8b735f;
+  margin-bottom: 5px;
+  font-weight: 500;
 }
 
-/* Mobile adjustments */
+.product-card .add-to-cart-btn {
+  margin-top: 8px;
+}
+
+.product-card .product-info {
+  padding: 0.9rem;
+}
+
 @media (max-width: 640px) {
-  .product-img {
-    height: 200px;
-  }
-  
-  .product-info {
-    padding: 0.9rem 0.9rem 1.2rem;
-  }
-  
-  .product-title {
-    font-size: 0.85rem;
-  }
-  
-  .product-price {
-    font-size: 1rem;
-    margin: 0.4rem 0 0.6rem;
-  }
-  
-  .add-to-cart-btn {
-    padding: 0.5rem;
-    font-size: 0.7rem;
-  }
-  
-  .badge-tag {
-    top: 10px;
-    left: 10px;
-    padding: 0.2rem 0.7rem;
+  .size-option {
+    padding: 3px 8px;
     font-size: 0.6rem;
   }
+  .size-label {
+    font-size: 0.55rem;
+  }
 }
 
-
-/* Modern Classy Product Cards - COMPACT & CLEAN */
 /* Modern Classy Product Cards - FIXED HEIGHTS (No shifting) */
-
 .product-card {
   background: #ffffff;
   border-radius: 16px;
@@ -1044,13 +854,12 @@ button {
   flex-direction: column;
 }
 
-/* FIXED: Title with consistent height (reserve space for 2 lines) */
 .product-title {
   font-size: 0.95rem;
   font-weight: 700;
   color: #2c1810;
   line-height: 1.3;
-  height: 2.5rem;  /* Fixed height for exactly 2 lines */
+  height: 2.5rem;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1058,48 +867,25 @@ button {
   margin-bottom: 4px;
 }
 
-/* FIXED: Category - fixed height */
 .product-category {
   font-size: 0.65rem;
   color: #f97316;
   font-weight: 600;
   letter-spacing: 0.3px;
   text-transform: uppercase;
-  height: 1.2rem;  /* Fixed height */
+  height: 1.2rem;
   margin-bottom: 2px;
 }
 
-/* FIXED: Rating - fixed height */
-.product-rating {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  height: 1rem;  /* Fixed height */
-  margin-bottom: 2px;
-}
-
-.product-rating i {
-  font-size: 0.65rem;
-  color: #fbbf24;
-}
-
-.product-rating span {
-  font-size: 0.65rem;
-  color: #8b735f;
-  font-weight: 500;
-}
-
-/* FIXED: Price - fixed height */
 .product-price {
   font-size: 1.1rem;
   font-weight: 800;
   color: #f97316;
-  height: 2rem;  /* Fixed height */
+  height: 2rem;
   display: flex;
   align-items: center;
 }
 
-/* FIXED: Button - consistent position */
 .add-to-cart-btn {
   width: 100%;
   background: #fff7ed;
@@ -1116,8 +902,8 @@ button {
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: 'Inter', sans-serif;
-  margin-top: auto;  /* Pushes to bottom */
-  height: 38px;  /* Fixed button height */
+  margin-top: auto;
+  height: 38px;
 }
 
 .add-to-cart-btn:hover {
@@ -1126,52 +912,32 @@ button {
   color: white;
 }
 
-/* Mobile responsive */
 @media (max-width: 640px) {
   .product-img {
     height: 170px;
   }
-  
   .product-info {
     padding: 0.7rem;
   }
-  
-  /* FIXED: Mobile title - still reserves 2 lines space */
   .product-title {
     font-size: 0.8rem;
-    height: 2.1rem;  /* Smaller but still fixed for 2 lines */
+    height: 2.1rem;
     line-height: 1.3;
     margin-bottom: 2px;
   }
-  
   .product-category {
     font-size: 0.6rem;
     height: 1rem;
   }
-  
-  .product-rating {
-    height: 0.9rem;
-  }
-  
-  .product-rating i {
-    font-size: 0.6rem;
-  }
-  
-  .product-rating span {
-    font-size: 0.6rem;
-  }
-  
   .product-price {
     font-size: 0.95rem;
     height: 1.8rem;
   }
-  
   .add-to-cart-btn {
     padding: 6px;
     font-size: 0.65rem;
     height: 34px;
   }
-  
   .badge-tag {
     font-size: 0.55rem;
     padding: 2px 8px;
@@ -1192,7 +958,6 @@ button {
   }
 }
 
-/* Owner Settings - Grid layout for perfect equal division */
 .owner-settings {
   background: #fffaf5;
   border-radius: 20px;
@@ -1206,16 +971,14 @@ button {
   border: 1px solid #fed7aa;
 }
 
-/* Mobile view - grid for equal division */
 @media (max-width: 640px) {
   .owner-settings {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;  /* 3 equal columns */
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5rem;
     padding: 0.6rem 0.8rem;
     align-items: center;
   }
-  
   .owner-settings label {
     font-size: 0.6rem;
     white-space: nowrap;
@@ -1223,11 +986,9 @@ button {
     gap: 4px;
     margin: 0;
   }
-  
   .owner-settings label i {
     font-size: 0.7rem;
   }
-  
   .owner-settings input {
     width: 100%;
     padding: 0.35rem 0.4rem;
@@ -1235,7 +996,6 @@ button {
     text-align: center;
     box-sizing: border-box;
   }
-  
   .owner-settings small {
     font-size: 0.55rem;
     white-space: normal;
@@ -1245,31 +1005,25 @@ button {
   }
 }
 
-/* For very small screens */
 @media (max-width: 480px) {
   .owner-settings {
     gap: 0.3rem;
     padding: 0.4rem 0.5rem;
   }
-  
   .owner-settings label {
     font-size: 0.5rem;
   }
-  
   .owner-settings label i {
     font-size: 0.6rem;
   }
-  
   .owner-settings input {
     font-size: 0.5rem;
     padding: 0.25rem 0.3rem;
   }
-  
   .owner-settings small {
     font-size: 0.45rem;
   }
 }
-
   </style>
 </head>
 <body>
@@ -1290,12 +1044,9 @@ button {
       </div>
     </div>
   </div>
-  
 
-  <!-- ========== DROPDOWN UNIFIED FILTERS - INSTANT ACTION ========== -->
   <div class="unified-filters">
     <div class="filters-grid">
-      <!-- CATEGORY dropdown -->
       <div class="filter-block">
         <h4><i class="fas fa-tag"></i> CATEGORY</h4>
         <select id="categoryDropdown" class="modern-select">
@@ -1304,7 +1055,6 @@ button {
           <option value="Pants">Pants</option>
         </select>
       </div>
-      <!-- FABRIC dropdown -->
       <div class="filter-block">
         <h4><i class="fas fa-feather-alt"></i> FABRIC</h4>
         <select id="fabricDropdown" class="modern-select">
@@ -1315,7 +1065,6 @@ button {
           <option value="Polyester">Polyester</option>
         </select>
       </div>
-      <!-- PRICE RANGE dropdown - FIXED: Fully functional price filtering -->
       <div class="filter-block">
         <h4><i class="fas fa-rupee-sign"></i> PRICE RANGE</h4>
         <select id="priceRangeDropdown" class="modern-select">
@@ -1330,7 +1079,6 @@ button {
           <option value="20000-50000">₹20,000+</option>
         </select>
       </div>
-      <!-- SORT dropdown -->
       <div class="filter-block sort-block">
         <h4><i class="fas fa-arrow-up-wide-short"></i> SORT BY</h4>
         <select id="sortSelect" class="modern-select">
@@ -1365,27 +1113,23 @@ button {
   </div>
 </div>
 
-<!-- Checkout Modal with Live Location Capture -->
+<!-- Checkout Modal -->
 <div id="checkoutModal" class="checkout-modal">
   <div class="checkout-card">
-    <button class="close-modal-x" id="closeModalX" style="position:absolute; top:18px; right:20px; background:none; border:none; font-size:1.2rem;"><i class="fas fa-times"></i></button>
-    <h2 style="color:#2b5a3e; margin-bottom:1rem;"><i class="fas fa-clipboard-list"></i> Complete order</h2>
+    <button class="close-modal-x" id="closeModalX"><i class="fas fa-times"></i></button>
+    <h2><i class="fas fa-clipboard-list"></i> Complete order</h2>
     <form id="checkoutForm">
       <div class="form-group"><label>Full name</label><input type="text" id="custName" placeholder="Ramesh Kumar" required></div>
       <div class="form-group"><label>Phone (10 digits)</label><input type="tel" id="custPhone" placeholder="9876543210" required></div>
       <div class="form-group"><label>Delivery address</label><textarea id="custAddress" rows="2" placeholder="House/Street, Landmark, Bengaluru" required></textarea></div>
-      
-      <!-- LIVE LOCATION CAPTURE SECTION -->
       <div class="form-group">
-        <label><i class="fas fa-map-marker-alt"></i> Live Location (For Accurate Delivery)</label>
+        <label><i class="fas fa-map-marker-alt"></i> Live Location</label>
         <button type="button" id="getLocationBtn" style="background: #f97316; border: none; padding: 0.7rem; border-radius: 60px; width: 100%; font-weight: 600; color: white; cursor: pointer; font-family: 'Inter', sans-serif; margin-bottom: 8px;">
           <i class="fas fa-location-dot"></i> 📍 Capture My Live Location
         </button>
         <div id="locationStatus" style="font-size: 0.7rem; color: #8b735f; margin-top: 5px; text-align: center;"></div>
         <input type="hidden" id="custLocation" value="">
-        <small style="color: #8b735f; font-size: 0.65rem;">Click the button above to share your current GPS location. A Google Maps link will be sent with your order.</small>
       </div>
-      
       <div class="order-summary-preview" id="orderSummaryPreview"></div>
       <div class="modal-buttons"><button type="button" class="cancel-modal" id="cancelModalBtn">Cancel</button><button type="submit" class="place-order-btn"><i class="fab fa-whatsapp"></i> Place order</button></div>
     </form>
@@ -1394,16 +1138,13 @@ button {
 <div id="toastMsg" class="toast-msg">✨ Item updated</div>
 
 <div class="owner-settings">
-    <label><i class="fab fa-whatsapp"></i> Store Owner WhatsApp (Receive Orders)</label>
+    <label><i class="fab fa-whatsapp"></i> Store Owner WhatsApp</label>
     <a href="https://wa.me/919611459960" target="_blank" style="display:block; text-align:center;">9611459960</a>
     <small>Order details go here for confirmation</small>
 </div>
 
-<!-- Footer Section -->
 <div class="footer" style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #fed7aa;">
   <div class="footer-content" style="display: flex; justify-content: center; align-items: center; gap: 2.5rem; flex-wrap: wrap;">
-    
-    <!-- Call & WhatsApp Buttons -->
     <div class="contact-buttons" style="display: flex; gap: 1rem;">
       <a href="tel:919611459960" style="text-decoration: none;">
         <button style="background: #fff7ed; border: 1px solid #fed7aa; padding: 0.6rem 1.2rem; border-radius: 60px; font-weight: 600; color: #c2410c; cursor: pointer; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px;">
@@ -1416,43 +1157,28 @@ button {
         </button>
       </a>
     </div>
-    
-    <!-- Instagram Icon -->
     <div class="social-icons" style="display: flex; gap: 1.5rem;">
       <i class="fab fa-instagram" style="color: #f97316; font-size: 1.5rem; cursor: pointer;"></i>
     </div>
   </div>
-  
-  <div style="text-align: center; margin-top: 1rem; font-size: 0.7rem; color: #c2410c;">
-    © 2026 KR Webcrafts
-  </div>
+  <div style="text-align: center; margin-top: 1rem; font-size: 0.7rem; color: #c2410c;">© 2026 KR Webcrafts</div>
 </div>
 
 <script>
-  // ENHANCED PRODUCTS LIST - includes more variety for better filtering demo
   const products = [
-    { id: 1, name: "Classic White Cotton Shirt", category: "Shirt", fabric: "Cotton", price: 1299, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD-jHkKDYIEfMdcArnpz8GjRTq3Fp6U87C8GeBLnDaBg&s", badge: "Bestseller" },
-    { id: 2, name: "Blue Linen Casual Shirt", category: "Shirt", fabric: "Linen", price: 1899, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1QA41Q1wWCAfnGwxGH_xHvUMn0ZbxiozQ4TDrNRO6UQ&s", badge: "Summer" },
-    { id: 3, name: "Black Slim Fit Trousers", category: "Pants", fabric: "Polyester", price: 1499, img: "https://img0.junaroad.com/uiproducts/21563550/zoom_0-1728040500.jpg", badge: "Office" },
-    { id: 4, name: "Denim Blue Jeans", category: "Pants", fabric: "Denim", price: 1999, img: "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&w=600", badge: "Trend" },
-    { id: 5, name: "Grey Checkered Formal Shirt", category: "Shirt", fabric: "Cotton", price: 1599, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyleWmMnyF-resRAXAK18eUet9p6po5RdP1g&s", badge: "Formal" },
-    { id: 6, name: "Olive Green Cargo Pants", category: "Pants", fabric: "Cotton", price: 2299, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXLxZvaqTs8G8aJHMHzMH0vsa-0HywUUV-nbTMdnQ0tw&s", badge: "Utility" }, 
-    { id: 8, name: "Slim Fit Denim Jeans", category: "Pants", fabric: "Denim", price: 2799, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ47or3OLqKxljFqagiOcyWryxJtHBz5aDq1sR9-u25Dg&s", badge: "New" }
+    { id: 1, name: "Classic White Cotton Shirt", category: "Shirt", fabric: "Cotton", price: 1299, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD-jHkKDYIEfMdcArnpz8GjRTq3Fp6U87C8GeBLnDaBg&s", badge: "Bestseller", availableSizes: ["S","M","L","XL","XXL"] },
+    { id: 2, name: "Blue Linen Casual Shirt", category: "Shirt", fabric: "Linen", price: 1899, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1QA41Q1wWCAfnGwxGH_xHvUMn0ZbxiozQ4TDrNRO6UQ&s", badge: "Summer", availableSizes: ["S","M","L","XL"] },
+    { id: 3, name: "Black Slim Fit Trousers", category: "Pants", fabric: "Polyester", price: 1499, img: "https://img0.junaroad.com/uiproducts/21563550/zoom_0-1728040500.jpg", badge: "Office", availableSizes: ["30","32","34","36","38"] },
+    { id: 4, name: "Denim Blue Jeans", category: "Pants", fabric: "Denim", price: 1999, img: "https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&w=600", badge: "Trend", availableSizes: ["30","32","34","36","38","40"] },
+    { id: 5, name: "Grey Checkered Formal Shirt", category: "Shirt", fabric: "Cotton", price: 1599, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyleWmMnyF-resRAXAK18eUet9p6po5RdP1g&s", badge: "Formal", availableSizes: ["S","M","L","XL","XXL"] },
+    { id: 6, name: "Olive Green Cargo Pants", category: "Pants", fabric: "Cotton", price: 2299, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXLxZvaqTs8G8aJHMHzMH0vsa-0HywUUV-nbTMdnQ0tw&s", badge: "Utility", availableSizes: ["30","32","34","36","38"] },
+    { id: 8, name: "Slim Fit Denim Jeans", category: "Pants", fabric: "Denim", price: 2799, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ47or3OLqKxljFqagiOcyWryxJtHBz5aDq1sR9-u25Dg&s", badge: "New", availableSizes: ["28","30","32","34","36"] }
   ];
 
   let cart = [];
-  let filters = {
-    category: "all",
-    fabric: "all",
-    minPrice: 0,
-    maxPrice: 8000,
-    searchQuery: "",
-    sortType: "default"
-  };
-  
-  let priceDebounceTimer = null;
+  let selectedSizes = {}; // Store selected size for each product id
+  let filters = { category: "all", fabric: "all", minPrice: 0, maxPrice: 8000, searchQuery: "", sortType: "default" };
 
-  // DOM elements
   const productGrid = document.getElementById("productGrid");
   const resultCountSpan = document.getElementById("resultCount");
   const cartCountBadge = document.getElementById("cartCountBadge");
@@ -1474,22 +1200,32 @@ button {
     if (totalItems === 0) { cartItemsListDiv.innerHTML = `<div style="text-align:center; color:#b7a48e;">Cart empty</div>`; cartTotalSpan.innerText = "₹0"; return; }
     let html = "", total = 0;
     cart.forEach(item => { const itotal = item.price * item.quantity; total += itotal;
-      html += `<div class="cart-item"><div class="cart-item-info"><h4>${escapeHtml(item.name)}</h4><div class="cart-item-price">₹${item.price} x ${item.quantity}</div></div><div class="cart-item-actions"><button class="cart-inc" data-id="${item.id}"><i class="fas fa-plus-circle"></i></button><button class="cart-dec" data-id="${item.id}"><i class="fas fa-minus-circle"></i></button><button class="cart-remove" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button></div></div>`;
+      html += `<div class="cart-item"><div class="cart-item-info"><h4>${escapeHtml(item.name)}</h4><div class="cart-item-size">Size: ${item.size}</div><div class="cart-item-price">₹${item.price} x ${item.quantity}</div></div><div class="cart-item-actions"><button class="cart-inc" data-id="${item.id}" data-size="${item.size}"><i class="fas fa-plus-circle"></i></button><button class="cart-dec" data-id="${item.id}" data-size="${item.size}"><i class="fas fa-minus-circle"></i></button><button class="cart-remove" data-id="${item.id}" data-size="${item.size}"><i class="fas fa-trash-alt"></i></button></div></div>`;
     });
     cartItemsListDiv.innerHTML = html; cartTotalSpan.innerText = `₹${total.toFixed(2)}`;
-    document.querySelectorAll(".cart-inc").forEach(btn => btn.addEventListener("click", () => addToCartById(parseInt(btn.dataset.id))));
-    document.querySelectorAll(".cart-dec").forEach(btn => btn.addEventListener("click", () => { const id = parseInt(btn.dataset.id), ex = cart.find(i => i.id === id); if (ex) { if (ex.quantity === 1) cart = cart.filter(i => i.id !== id); else ex.quantity--; updateCartUI(); renderProducts(); showToast("Cart updated"); } }));
-    document.querySelectorAll(".cart-remove").forEach(btn => btn.addEventListener("click", () => { cart = cart.filter(i => i.id !== parseInt(btn.dataset.id)); updateCartUI(); renderProducts(); showToast("Removed"); }));
+    document.querySelectorAll(".cart-inc").forEach(btn => btn.addEventListener("click", () => addToCartById(parseInt(btn.dataset.id), btn.dataset.size)));
+    document.querySelectorAll(".cart-dec").forEach(btn => btn.addEventListener("click", () => { const id = parseInt(btn.dataset.id), size = btn.dataset.size, ex = cart.find(i => i.id === id && i.size === size); if (ex) { if (ex.quantity === 1) cart = cart.filter(i => !(i.id === id && i.size === size)); else ex.quantity--; updateCartUI(); renderProducts(); showToast("Cart updated"); } }));
+    document.querySelectorAll(".cart-remove").forEach(btn => btn.addEventListener("click", () => { const id = parseInt(btn.dataset.id), size = btn.dataset.size; cart = cart.filter(i => !(i.id === id && i.size === size)); updateCartUI(); renderProducts(); showToast("Removed"); }));
   }
   
-  function addToCartById(pid) { const p = products.find(p => p.id === pid); if (!p) return; const ex = cart.find(i => i.id === pid); if (ex) ex.quantity++; else cart.push({ id: p.id, name: p.name, price: p.price, quantity: 1 }); updateCartUI(); renderProducts(); showToast(`${p.name} added`); }
+  function addToCartById(pid, size) { 
+    if (!size) { showToast("Please select a size first!"); return false; }
+    const p = products.find(p => p.id === pid); 
+    if (!p) return false; 
+    const ex = cart.find(i => i.id === pid && i.size === size); 
+    if (ex) ex.quantity++; 
+    else cart.push({ id: p.id, name: p.name, price: p.price, quantity: 1, size: size }); 
+    updateCartUI(); 
+    renderProducts(); 
+    showToast(`${p.name} (${size}) added`); 
+    return true;
+  }
 
-  // Helper: parse price range from dropdown value
   function updatePriceFromDropdown() {
     const val = priceRangeDropdown.value;
     const [min, max] = val.split('-').map(Number);
     filters.minPrice = min;
-    filters.maxPrice = max === 50000 ? 999999 : max; // handle 20000+ as unlimited upper bound
+    filters.maxPrice = max === 50000 ? 999999 : max;
     if (val === '20000-50000') filters.maxPrice = 999999;
   }
 
@@ -1509,18 +1245,39 @@ button {
     resultCountSpan.innerText = `${filtered.length} items`;
     if (filtered.length === 0) { productGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">👔 No items match — adjust filters ✨</div>`; return; }
     let html = "";
-    filtered.forEach(prod => { const inCart = cart.find(i => i.id === prod.id); const btnText = inCart ? `In Cart (${inCart.quantity})` : "Add to Cart";
-      html += `<div class="product-card"><div class="product-img" style="background-image:url('${prod.img}'); background-size:cover;"><div class="badge-tag">${prod.badge || 'New'}</div></div><div class="product-info"><div class="product-title">${escapeHtml(prod.name)}</div><div class="product-category">${prod.category} • ${prod.fabric}</div><div class="product-price">₹${prod.price.toLocaleString('en-IN')}</div><button class="add-to-cart-btn" data-id="${prod.id}"><i class="fas fa-shopping-cart"></i> ${btnText}</button></div></div>`;
+    filtered.forEach(prod => { 
+      const currentSize = selectedSizes[prod.id] || (prod.availableSizes[0] || "");
+      const sizeOptions = prod.availableSizes.map(sz => `<span class="size-option ${currentSize === sz ? 'selected' : ''}" data-id="${prod.id}" data-size="${sz}">${sz}</span>`).join('');
+      const inCartItem = cart.find(i => i.id === prod.id && i.size === currentSize);
+      const btnText = inCartItem ? `In Cart (${inCartItem.quantity})` : "Add to Cart";
+      html += `<div class="product-card"><div class="product-img" style="background-image:url('${prod.img}'); background-size:cover;"><div class="badge-tag">${prod.badge || 'New'}</div></div><div class="product-info"><div class="product-title">${escapeHtml(prod.name)}</div><div class="product-category">${prod.category} • ${prod.fabric}</div><div class="size-label"><i class="fas fa-ruler-combined"></i> Select Size:</div><div class="size-selector" data-product-id="${prod.id}">${sizeOptions}</div><div class="product-price">₹${prod.price.toLocaleString('en-IN')}</div><button class="add-to-cart-btn" data-id="${prod.id}"><i class="fas fa-shopping-cart"></i> ${btnText}</button></div></div>`;
     });
     productGrid.innerHTML = html;
-    document.querySelectorAll(".add-to-cart-btn").forEach(btn => btn.addEventListener("click", (e) => { e.stopPropagation(); addToCartById(parseInt(btn.dataset.id)); }));
+    
+    // Attach size selection events
+    document.querySelectorAll(".size-option").forEach(opt => {
+      opt.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const pid = parseInt(opt.dataset.id);
+        const size = opt.dataset.size;
+        selectedSizes[pid] = size;
+        renderProducts(); // re-render to update selected state
+      });
+    });
+    
+    document.querySelectorAll(".add-to-cart-btn").forEach(btn => btn.addEventListener("click", (e) => { 
+      e.stopPropagation(); 
+      const pid = parseInt(btn.dataset.id);
+      const size = selectedSizes[pid] || (products.find(p=>p.id===pid)?.availableSizes[0]);
+      if (!size) { showToast("Please select a size"); return; }
+      addToCartById(pid, size); 
+    }));
   }
 
-  // Sync all UI filters to filters object and render instantly
   function syncAllFiltersAndRender() {
     filters.category = categoryDropdown.value;
     filters.fabric = fabricDropdown.value;
-    updatePriceFromDropdown();       // price from dropdown
+    updatePriceFromDropdown();
     filters.sortType = sortSelect.value;
     filters.searchQuery = searchInput.value;
     renderProducts();
@@ -1538,7 +1295,6 @@ button {
     showToast("All filters cleared ✨");
   }
   
-  // Instant event binding for all filters (dropdowns, search, sort)
   function initInstantFilters() {
     categoryDropdown.addEventListener("change", () => syncAllFiltersAndRender());
     fabricDropdown.addEventListener("change", () => syncAllFiltersAndRender());
@@ -1551,31 +1307,9 @@ button {
   function generateWhatsAppMessage(name, phone, address, locationLink) {
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     if (!cart || cart.length === 0) return encodeURIComponent("Cart is empty.");
-
-    const itemWidth = Math.max("Item".length, ...cart.map(i => i.name.length));
-    const qtyWidth = Math.max("Qty".length, ...cart.map(i => String(i.quantity).length));
-    const amtWidth = Math.max("Amount".length, ...cart.map(i => (`₹${(i.price * i.quantity).toFixed(2)}`).length));
-
-    let table = "";
-    table += `${"Item".padEnd(itemWidth)}  ${"Qty".padStart(qtyWidth)}  ${"Amount".padStart(amtWidth)}\n`;
-    table += `${"-".repeat(itemWidth + qtyWidth + amtWidth + 4)}\n`;
-    cart.forEach(item => {
-      const itemName = item.name.padEnd(itemWidth);
-      const qty = String(item.quantity).padStart(qtyWidth);
-      const amount = `₹${(item.price * item.quantity).toFixed(2)}`.padStart(amtWidth);
-      table += `${itemName}  ${qty}  ${amount}\n`;
-    });
-    table += `${"-".repeat(itemWidth + qtyWidth + amtWidth + 4)}\n`;
-    table += `Grand Total: ₹${total.toFixed(2)}`;
-    table = "```" + table + "```";
-
-    let locationText = "";
-    if (locationLink && locationLink.trim()) {
-      locationText = `\n📍 *Live Location:* ${locationLink.trim()}`;
-    } else {
-      locationText = `\n📍 *Live Location:* Not shared`;
-    }
-
+    let itemsList = "";
+    cart.forEach(item => { itemsList += `• ${item.name} (Size: ${item.size}) x${item.quantity} = ₹${(item.price * item.quantity).toFixed(2)}\n`; });
+    let locationText = locationLink && locationLink.trim() ? `\n📍 *Live Location:* ${locationLink.trim()}` : `\n📍 *Live Location:* Not shared`;
     const message = `🛍️ *NEW ORDER* 🛍️
 
 👤 *Customer:* ${name}
@@ -1583,82 +1317,56 @@ button {
 🏠 *Address:* ${address}${locationText}
 
 📦 *Order Details:*
-${table}
+${itemsList}
+------------------------
+*Total: ₹${total.toFixed(2)}*
 
 📍 KR Threads`;
-
     return encodeURIComponent(message);
   }
   
-  function openCheckoutModal() { if (cart.length === 0) { showToast("Add items to cart first"); return; } const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0); let sumHtml = `<strong>Your order summary</strong><br>`; cart.forEach(i => { sumHtml += `• ${i.name} x${i.quantity} = ₹${(i.price * i.quantity).toFixed(2)}<br>`; }); sumHtml += `<strong>Total: ₹${total.toFixed(2)}</strong>`; document.getElementById("orderSummaryPreview").innerHTML = sumHtml; document.getElementById("checkoutModal").classList.add("open"); }
+  function openCheckoutModal() { 
+    if (cart.length === 0) { showToast("Add items to cart first"); return; } 
+    const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0); 
+    let sumHtml = `<strong>Your order summary</strong><br>`; 
+    cart.forEach(i => { sumHtml += `• ${i.name} (Size: ${i.size}) x${i.quantity} = ₹${(i.price * i.quantity).toFixed(2)}<br>`; }); 
+    sumHtml += `<strong>Total: ₹${total.toFixed(2)}</strong>`; 
+    document.getElementById("orderSummaryPreview").innerHTML = sumHtml; 
+    document.getElementById("checkoutModal").classList.add("open"); 
+  }
+  
   function closeModal() { document.getElementById("checkoutModal").classList.remove("open"); }
   
   function initLocationCapture() {
     const getLocationBtn = document.getElementById("getLocationBtn");
     const locationStatus = document.getElementById("locationStatus");
-    
     if (!getLocationBtn) return;
-    
     getLocationBtn.addEventListener("click", function(e) {
       e.preventDefault();
-      
-      if (!navigator.geolocation) {
-        if (locationStatus) locationStatus.innerHTML = "❌ Geolocation not supported by your browser";
-        showToast("Geolocation not supported");
-        return;
-      }
-      
+      if (!navigator.geolocation) { if (locationStatus) locationStatus.innerHTML = "❌ Geolocation not supported"; showToast("Geolocation not supported"); return; }
       getLocationBtn.disabled = true;
       getLocationBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Getting location...';
-      if (locationStatus) {
-        locationStatus.innerHTML = "📍 Requesting location permission...";
-        locationStatus.style.color = "#f97316";
-      }
-      
+      if (locationStatus) { locationStatus.innerHTML = "📍 Requesting location..."; locationStatus.style.color = "#f97316"; }
       navigator.geolocation.getCurrentPosition(
         function(position) {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          const accuracy = position.coords.accuracy;
+          const lat = position.coords.latitude, lng = position.coords.longitude;
           const googleMapsLink = `https://www.google.com/maps?q=${lat},${lng}`;
-          const locationInput = document.getElementById("custLocation");
-          if (locationInput) locationInput.value = googleMapsLink;
-          
-          if (locationStatus) {
-            locationStatus.innerHTML = `✅ Location captured! (Accuracy: ${Math.round(accuracy)}m)<br>📍 ${lat.toFixed(6)}, ${lng.toFixed(6)}`;
-            locationStatus.style.color = "#059669";
-          }
+          document.getElementById("custLocation").value = googleMapsLink;
+          if (locationStatus) { locationStatus.innerHTML = `✅ Location captured! (Accuracy: ${Math.round(position.coords.accuracy)}m)`; locationStatus.style.color = "#059669"; }
           showToast("✅ Live location captured!");
-          
           getLocationBtn.disabled = false;
-          getLocationBtn.innerHTML = '<i class="fas fa-location-dot"></i> 📍 Recapture Live Location';
+          getLocationBtn.innerHTML = '<i class="fas fa-location-dot"></i> 📍 Recapture Location';
           getLocationBtn.style.background = "#059669";
         },
         function(error) {
-          let errorMsg = "";
-          switch(error.code) {
-            case error.PERMISSION_DENIED:
-              errorMsg = "❌ Please allow location access in your browser";
-              break;
-            case error.POSITION_UNAVAILABLE:
-              errorMsg = "❌ Location unavailable. Check GPS/internet";
-              break;
-            case error.TIMEOUT:
-              errorMsg = "❌ Location request timeout. Try again";
-              break;
-            default:
-              errorMsg = "❌ Failed to get location";
-          }
-          if (locationStatus) {
-            locationStatus.innerHTML = errorMsg;
-            locationStatus.style.color = "#dc2626";
-          }
+          let errorMsg = error.code === error.PERMISSION_DENIED ? "❌ Allow location access" : "❌ Location failed";
+          if (locationStatus) { locationStatus.innerHTML = errorMsg; locationStatus.style.color = "#dc2626"; }
           showToast(errorMsg);
           getLocationBtn.disabled = false;
-          getLocationBtn.innerHTML = '<i class="fas fa-location-dot"></i> 📍 Capture Live Location';
+          getLocationBtn.innerHTML = '<i class="fas fa-location-dot"></i> 📍 Capture Location';
           getLocationBtn.style.background = "#f97316";
         },
-        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        { enableHighAccuracy: true, timeout: 10000 }
       );
     });
   }
@@ -1669,35 +1377,19 @@ ${table}
     const phone = document.getElementById("custPhone").value.trim();
     const address = document.getElementById("custAddress").value.trim();
     const locationLink = document.getElementById("custLocation").value.trim();
-    
-    if (!name || !phone || !address) {
-      showToast("Fill all fields");
-      return;
-    }
-    if (!/^\d{10}$/.test(phone)) {
-      showToast("Enter valid 10-digit mobile");
-      return;
-    }
-    
-    if (!locationLink) {
-      const confirmMsg = confirm("⚠️ No location captured! Do you want to proceed without sharing your location?");
-      if (!confirmMsg) return;
-    }
-    
-    let owner = "919611459960";
-    const url = `https://wa.me/${owner}?text=${generateWhatsAppMessage(name, phone, address, locationLink)}`;
-    window.open(url, '_blank');
+    if (!name || !phone || !address) { showToast("Fill all fields"); return; }
+    if (!/^\d{10}$/.test(phone)) { showToast("Enter valid 10-digit mobile"); return; }
+    if (!locationLink && !confirm("⚠️ No location captured! Proceed without sharing location?")) return;
+    const owner = "919611459960";
+    window.open(`https://wa.me/${owner}?text=${generateWhatsAppMessage(name, phone, address, locationLink)}`, '_blank');
     showToast("Order sent to store!");
-    cart = [];
-    updateCartUI();
-    renderProducts();
-    closeModal();
+    cart = []; selectedSizes = {};
+    updateCartUI(); renderProducts(); closeModal();
     document.getElementById("cartOverlay").classList.remove("open");
     document.getElementById("cartDrawer").classList.remove("open");
     document.getElementById("checkoutForm").reset();
     document.getElementById("custLocation").value = "";
-    const locationStatus = document.getElementById("locationStatus");
-    if (locationStatus) locationStatus.innerHTML = "";
+    if(document.getElementById("locationStatus")) document.getElementById("locationStatus").innerHTML = "";
   }
 
   function initEvents() {
