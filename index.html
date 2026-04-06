@@ -1080,6 +1080,20 @@ button {
   height: 16px; /* keep label height fixed */
   display: block;
 }
+
+.shop-info-btn {
+  cursor: pointer;
+}
+
+.shop-info-btn i {
+  font-size: 1.4rem;
+  color: #f97316;
+  transition: 0.2s;
+}
+
+.shop-info-btn i:hover {
+  color: #c2410c;
+}
   </style>
 </head>
 <body>
@@ -1098,6 +1112,9 @@ button {
         <i class="fas fa-shopping-bag"></i>
         <span class="cart-count" id="cartCountBadge">0</span>
       </div>
+	  <div class="shop-info-btn" id="shopInfoBtn">
+  <i class="fas fa-store"></i>
+</div>
     </div>
   </div>
 
@@ -1218,6 +1235,44 @@ button {
     </div>
   </div>
   <div style="text-align: center; margin-top: 1rem; font-size: 0.7rem; color: #c2410c;">© 2026 KR Webcrafts</div>
+</div>
+
+
+<div id="shopModal" class="checkout-modal">
+  <div class="checkout-card">
+    
+    <button class="close-modal-x" id="closeShopModal">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <h2><i class="fas fa-store"></i> KR Threads</h2>
+
+    <div style="font-size:0.85rem; color:#2c1810; line-height:1.6; margin-top:10px;">
+      
+      <p><strong>👔 Premium Shirts & Pants Store</strong></p>
+
+      <p>✨ We provide high-quality stylish shirts and pants at affordable prices. Perfect for casual, office, and special occasions.</p>
+
+      <p>📍 <strong>Location:</strong> Bengaluru</p>
+      <p>🕒 <strong>Timings:</strong> 10:00 AM – 9:00 PM</p>
+
+      <hr style="margin:10px 0; border:0.5px solid #fed7aa;">
+
+      <p>📞 <strong>Call:</strong> 
+        <a href="tel:919611459960" style="color:#f97316; text-decoration:none;">9611459960</a>
+      </p>
+
+      <p>💬 <strong>WhatsApp:</strong> 
+        <a href="https://wa.me/919611459960" target="_blank" style="color:#25D366; text-decoration:none;">Chat Now</a>
+      </p>
+
+      <p>📌 <strong>Google Maps:</strong> 
+        <a href="https://www.google.com/maps?q=Bengaluru" target="_blank" style="color:#f97316; text-decoration:none;">View Location</a>
+      </p>
+
+    </div>
+
+  </div>
 </div>
 
 <script>
@@ -1469,6 +1524,28 @@ ${itemsList}
     updateCartUI(); 
   }
   init();
+  
+  // Shop modal open
+const shopBtn = document.getElementById("shopInfoBtn");
+const shopModal = document.getElementById("shopModal");
+const closeShop = document.getElementById("closeShopModal");
+
+if (shopBtn && shopModal && closeShop) {
+  shopBtn.addEventListener("click", () => {
+    shopModal.classList.add("open");
+  });
+
+  closeShop.addEventListener("click", () => {
+    shopModal.classList.remove("open");
+  });
+
+  shopModal.addEventListener("click", (e) => {
+    if (e.target === shopModal) {
+      shopModal.classList.remove("open");
+    }
+  });
+}
+
 </script>
 </body>
 </html>
