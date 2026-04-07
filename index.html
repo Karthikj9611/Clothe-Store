@@ -796,6 +796,37 @@ body {
   color: #c2410c;
   cursor: pointer;
 }
+
+.contact-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* ✅ allows wrapping */
+  justify-content: center;
+}
+
+.contact-buttons a {
+  flex: 1 1 auto; /* ✅ responsive width */
+  min-width: 120px; /* prevents too small */
+  text-decoration: none; /* ❌ remove underline */
+}
+
+.contact-buttons button {
+  width: 100%; /* ✅ full width inside */
+  padding: 0.6rem;
+  border-radius: 60px;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+@media (max-width: 480px) {
+  .contact-buttons {
+    flex-direction: column; /* stack buttons */
+  }
+}
+
 </style>
 </head>
 <body>
